@@ -1,34 +1,24 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
-
-  # GET /notes or /notes.json
-  def index
-    @notes = Note.all
-  end
-
-  # GET /notes/1 or /notes/1.json
-  def show
-  end
+  before_action :set_user
+  before_action :set_notes, only: [:index]
+  before_action :set_note, only: [:edit, :update, :destroy]
 
   # GET /notes/new
   def new
-    @note = Note.new
-  end
-
-  # GET /notes/1/edit
-  def edit
+    @note = @user.notes.build
   end
 
   # POST /notes or /notes.json
   def create
-    @note = Note.new(note_params)
+    @note = @user.notes.build(note_params)
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to note_url(@note), notice: "Note was successfully created." }
+        format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
@@ -36,35 +26,37 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
-    respond_to do |format|
-      if @note.update(note_params)
-        format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
-        format.json { render :show, status: :ok, location: @note }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
-      end
+    if @note.update(note_params)
+      redirect_to notes_path, notice: 'Заметка успешно обновлена.'
+    else
+      render :edit
     end
   end
 
   # DELETE /notes/1 or /notes/1.json
   def destroy
-    @note.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to notes_url, notice: "Note was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @note.destroy
+    redirect_to notes_path, notice: 'Заметка успешно удалена.'
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      @note = @user.notes.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to notes_path, alert: 'Заметка не найдена'
     end
 
+    def set_notes
+      @notes = @user.notes
+    end
+
+    def set_user
+      @user = current_user
+    end
     # Only allow a list of trusted parameters through.
     def note_params
       params.require(:note).permit(:title, :text, :tags)
-    end
+    end    
 end

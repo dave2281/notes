@@ -6,7 +6,19 @@
   <title>Document</title>
 </head>
 <body>
+  <% if alert.present? %>
+      <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <% if notice.present? %>
+      <p class="alert alert-primary"><%= notice %></p>    
+  <% end %>
+      
   <%= render 'partials/navbar' %> 
+
+  <%= link_to "New note", new_note_path, class: "btn btn-secondary"  %>
+
+  <%= render 'shared/index_content' %>
 
   <%= render 'partials/footer' %>
 </body>

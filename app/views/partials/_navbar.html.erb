@@ -26,6 +26,14 @@
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
+
+        <%- if current_user.present?  %>
+          <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-secondary" %>
+        <% end %>
+       
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "Log in", new_user_session_path, class: "btn btn-secondary" %><br />
+        <% end %>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

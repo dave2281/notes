@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :notes
+  resources :notes, except: [:show]
   devise_for :users
+
   root 'home#index'
+
+  get "notes#index", to: "home#index"
   
-  get 'home/index'
   resources :users, except: [:index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,15 @@
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    <% @notes.each_with_index do |note, index| %>
+      <div class="col">
+        <div class="card rounded-3 mw-100 mh-100 mx-2 my-2">
+          <div class="card-body">  
+            <h3 class="card-title"><%= note.title %></h3>
+            <p class="card-text"><%= note.text %></p>
+            <div class="d-flex justify-content-between">
+            <%= link_to 'Edit Note', edit_note_path(note), class: 'btn btn-secondary' %> <%= link_to 'Delete note', note_path(note), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
