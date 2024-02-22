@@ -17,7 +17,7 @@
             Dropdown
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -27,11 +27,11 @@
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
 
-        <%- if current_user.present?  %>
-          <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-secondary" %>
+        <% if current_user.present?  %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
         <% end %>
        
-        <%- if controller_name != 'sessions' %>
+        <% unless current_user.present? %>
           <%= link_to "Log in", new_user_session_path, class: "btn btn-secondary" %><br />
         <% end %>
       </ul>
