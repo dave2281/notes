@@ -7,16 +7,16 @@
 </head>
 <body>
   <% if alert.present? %>
-      <p class="alert alert-danger"><%= alert %></p>
+    <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
   <% if notice.present? %>
-      <p class="alert alert-primary"><%= notice %></p>    
+    <p class="alert alert-success"><%= notice %></p>    
   <% end %>
       
   <%= render 'partials/navbar' %> 
-
-  <%= link_to "New note", new_note_path, class: "btn btn-secondary"  %>
+  <br>
+  <%= link_to "New note", new_note_path, class: "btn btn-secondary rounded-3 h-auto w-auto mx-2 my-2"  %>
 
   <%= render 'shared/index_content' %>
 
