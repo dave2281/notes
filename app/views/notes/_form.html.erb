@@ -11,22 +11,23 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="form-group mx-3 my-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_area :text %>
+  <div class="form-group mx-3 my-3">
+    <%= form.label :text, class: "form-label" %>
+    <%= form.text_area :text, class: "form-control border border-dark", rows: 13 %>
   </div>
 
-  <div>
-    <%= form.label :tags, style: "display: block" %>
-    <%= form.text_field :tags %>
+  <div class="form-group mx-3 my-3">
+    <%= form.label :tags, class: "form-label" %>
+    
+    <%= form.text_field :tags, class: "form-control", placeholder: "#tag #another-tag #more-tags"%>
   </div>
 
-  <div>
-    <%= form.submit  %>
+  <div class="form-group mx-3 mt-3">
+    <%= form.submit "Submit", class: "btn btn-primary my-3" %> <%= link_to "Back to notes", home_index_path, class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[ show edit update destroy ]
   before_action :set_user
   before_action :set_notes, only: [:index]
   before_action :set_note, only: [:edit, :update, :destroy]
@@ -15,7 +14,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: 'Заметка была успешно создана!' }
+        format.html { redirect_to @note, notice: "Заметка была успешно создана!" }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -27,7 +26,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
     if @note.update(note_params)
-      redirect_to root_path, notice: 'Заметка успешно обновлена.'
+      redirect_to home_index_path, notice: "Заметка успешно обновлена."
     else
       render :edit
     end
@@ -36,7 +35,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1 or /notes/1.json
   def destroy
     @note.destroy
-    redirect_to root_path, notice: 'Заметка успешно удалена.'
+    redirect_to home_index_path, notice: 'Заметка успешно удалена.'
   end
 
 
@@ -45,7 +44,7 @@ class NotesController < ApplicationController
     def set_note
       @note = @user.notes.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to root_path, alert: 'Заметка не найдена.'
+      redirect_to home_index_path, alert: 'Заметка не найдена.'
     end
 
     def set_notes

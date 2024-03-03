@@ -42,6 +42,8 @@ gem "redis", ">= 4.0.1"
 
 gem 'devise'
 
+gem 'redcarpet'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
