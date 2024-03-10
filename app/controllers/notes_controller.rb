@@ -38,6 +38,16 @@ class NotesController < ApplicationController
     redirect_to home_index_path, notice: 'Заметка успешно удалена.'
   end
 
+  def list
+    @notes = Note.all
+    if params[:query].present?
+      if params[:search_type] == 'tag'
+        @notes = @notes.where("tags LIKE ?", "%#{params[:query]}%")
+      else
+        @notes = @notes.where("title LIKE ? OR content LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -57,5 +67,5 @@ class NotesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def note_params
       params.require(:note).permit(:title, :text, :tags)
-    end    
+    end
 end

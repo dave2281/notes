@@ -1,0 +1,5 @@
+<% all_tags = Note.pluck(:tags).join(' ').split.uniq %>
+
+<% all_tags.each do |tag| %>
+  <span class="tag"><%= tag %></span>
+<% end %>

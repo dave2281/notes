@@ -40,9 +40,40 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" role="search" action="/search" method="GET">
+        <%= form_with(url: notes_list_path, method: "get", class: "d-flex") do |form| %>
+          <%= form.text_field :query, class: "form-control me-2", placeholder: "Search", aria_label: "Search" %>
+
+          <%= form.select :search_type, options_for_select(["По словам", "По тегу"], "word"), { class: "form-select me-2" } %>
+
+          <%= form.submit "Search", class: "btn btn-outline-success" %>
+        <% end %>
+
+        <% tags = Note.pluck(:tags).join(' ').split.uniq %>
+
+        
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Результаты поиска
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              
+              <% @notes.each do |note| %>
+                <% if params[:query].present? %>
+                  <% note.tags.each do |tag| %>
+                  <%= tag %>
+                    <% tag = tag.gsub('#', '').strip %>  
+                    <% if tag == params[:query] %>
+                      <li>
+                        <%= link_to note.title, edit_note_path(note), class: "dropdown-item" %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+            </ul>
+          </div>
       </form>
     </div>
   </div>

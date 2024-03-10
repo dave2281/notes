@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     root to: 'devise/sessions#new'
   end
+# config/routes.rb
+  get '/notes/list', to: 'notes#list', as: 'notes_list'
 
   get "notes#index", to: "home#index"
   

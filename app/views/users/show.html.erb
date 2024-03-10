@@ -27,7 +27,7 @@
               <div class="card-body p-4">
                 <h6>Information</h6>
                 <hr class="mt-0 mb-4">
-                <div class="row pt-1">
+                <div class="row pt-1 text-center">
                   <div class="col-6 mb-3">
                     <h6>Email</h6>
                     <p class="text-muted"><%= @user.email %></p>
@@ -37,7 +37,22 @@
                     <p class="text-muted"><%= @user.username %></p>
                   </div>
                 </div>
+                <h6>Notes</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1 text-center">
+                  <div class="col-6 mb-3">
+                    <h6>Notes was created</h6>
+                    <p class="text-muted"><%= @user.note_ids.count %></p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Most Viewed</h6>
+                    <p class="text-muted">Dolor sit amet</p>
+                  </div>
+                </div class="text-decoration-none text-center mt-4" >
                 <%= link_to "Edit this user", edit_user_path(@user), class: 'btn btn-primary' %>   <%= link_to "Back to notes", home_index_path, class: 'btn btn-primary' %>   <%= link_to "Destroy user", @user, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+                <div>
+                  <%= link_to 'Change password', edit_user_registration_path, class: 'text-decoration-none text-center mt-4' %>
+                </div>
               </div>
             </div>
           </div>
