@@ -41,6 +41,8 @@ gem "redis", ">= 4.0.1"
 # My custom Gems
 
 gem 'devise'
+gem 'devise-i18n'
+gem 'ukrainian', '~> 2.6'
 
 gem 'redcarpet'
 
