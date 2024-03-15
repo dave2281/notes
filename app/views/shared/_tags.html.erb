@@ -1,5 +1,22 @@
-<ul>
-  <% @tags.each do |tag| %>
-    <li><%= tag %></li>
+
+<% tag_list = [] %>
+
+<% @tags.each do |tag| %>
+  <% json_filter(tag).each do |tags| %>
+    <% if tag_list.include?(tags) %>  
+    <% else %>
+      <% tag_list.push(tags) %>
+    <% end %>
   <% end %>
-</ul>
+<% end %>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <% tag_list.uniq.each do |uniq_tags| %>
+        <%= link_to truncate("##{uniq_tags}", length: 10), tag_path(uniq_tags), class: 'btn btn-outline-dark' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

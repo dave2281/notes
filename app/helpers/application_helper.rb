@@ -19,6 +19,10 @@ module ApplicationHelper
 
     markdown.render(text).html_safe
   end
+
+  def json_filter(string_with_array)
+    JSON.parse(string_with_array)
+  end
   
   def user_id(note)
     note.user_id

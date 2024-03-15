@@ -23,8 +23,11 @@
 
   <div class="form-group mx-3 my-3">
     <%= form.label :tags, class: "form-label" %>
-    
-    <%= form.text_field :tags, class: "form-control", placeholder: "#tag #another-tag #more-tags"%>
+    <% if @note.persisted? %>
+      <%= form.text_field :tags, class: "form-control", value: format_tags(json_filter(@note.tags)) %>
+    <% else %>
+      <%= form.text_field :tags, class: "form-control", placeholder: "#tag #another-tag #more-tags" %>
+    <% end %>
   </div>
 
   <div class="form-group mx-3 mt-3">

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
   devise_for :users
 
+  get 'tags/:tag', to: 'home#show_by_tag', as: :tag
 
   devise_scope :user do
     root to: 'devise/sessions#new'
