@@ -2,13 +2,17 @@
   <% if @note.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
-
       <ul>
-        <% @note.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% @note.errors.each do |attribute, message| %>
+          <li><%= "#{attribute.to_s.humanize} #{message}" %></li>
         <% end %>
       </ul>
     </div>
+  <% end %>
+
+
+  <% if alert.present? %>
+    <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
   <div class="form-group mx-3 my-3">

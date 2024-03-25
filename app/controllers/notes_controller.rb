@@ -14,10 +14,11 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: "Заметка была успешно создана!" }
+        format.html { redirect_to home_index_path, notice: "Заметка была успешно создана!" }
         format.json { render :show, status: :created, location: @note }
       else
-        format.html { render :new }
+        puts @note.errors.full_messages
+        format.html { redirect_to home_index_path }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
@@ -25,6 +26,7 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
+    
     if @note.update(note_params)
       redirect_to home_index_path, notice: "Заметка успешно обновлена."
     else
@@ -41,7 +43,6 @@ class NotesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-
     def set_note
       @note = @user.notes.find(params[:id])
     rescue ActiveRecord::RecordNotFound
