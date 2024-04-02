@@ -1,3 +1,3 @@
 Notes project. 
 
-``Note your life``
+>Note your life
