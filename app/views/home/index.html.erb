@@ -6,20 +6,24 @@
   <title>Document</title>
 </head>
 <body>
-
-  <% if alert.present? %>
-    <p class="alert alert-success"><%= alert %></p>    
-  <% end %>
-  
-  <%= render 'shared/errors' %>
+  <div class="page">
+    <div class="buffer">
+      <% if alert.present? %>
+        <p class="alert alert-success"><%= alert %></p>    
+      <% end %>
       
-  <%= render 'partials/navbar' %> 
+      <%= render partial: 'shared/errors', locals: { note: @note } %>
+          
+      <%= render 'partials/navbar' %> 
 
-  <%= render 'shared/tags' %>
-  <br>
+      <%= render 'shared/tags' %>
+      <br>
 
-  <%= render 'shared/index_content' %>
-
-  <%= render 'partials/footer' %>
+      <%= render 'shared/index_content' %>
+    </div>
+    <div class="text-center">
+      <%= render 'partials/footer' %>
+    </div>
+  </div>
 </body>
 </html>

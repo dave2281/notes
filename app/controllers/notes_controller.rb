@@ -17,8 +17,7 @@ class NotesController < ApplicationController
         format.html { redirect_to home_index_path, notice: "Заметка была успешно создана!" }
         format.json { render :show, status: :created, location: @note }
       else
-        puts @note.errors.full_messages
-        format.html { redirect_to home_index_path }
+        format.html { redirect_to new_note_path, alert: @note.errors.full_messages.join(", ") }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
@@ -43,6 +42,15 @@ class NotesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def add_nofollow_to_links(link)
+      if link.present?
+        link.strip!
+        link += " rel=\"nofollow\"" unless link.include?("nofollow")
+      end
+      link
+    end
+
     def set_note
       @note = @user.notes.find(params[:id])
     rescue ActiveRecord::RecordNotFound

@@ -1,16 +1,11 @@
-<% if alert.present? %>
-  <% if @note.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
-      <ul>
-        <% @note.errors.each do |attribute, message| %>
-          <li><%= "#{attribute.to_s.humanize} #{message}" %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if alert.present? && alert.errors.any? %>
+  <div class="alert alert-danger">
+    <h2><%= pluralize(alert.errors.count, "error") %> prohibited this action from being saved:</h2>
+    <ul>
+      <% alert.errors.each do |attribute, message| %>
+        <li><%= "#{attribute.to_s.humanize} #{message}" %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
-<% if notice.present? %>
-  <p class="alert alert-success"><%= notice %></p>    
-<% end %>
