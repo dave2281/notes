@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="card position-absolute top-50 start-50 translate-middle">
-    <h2 class="text-center mt-3">Forgot your password?</h2>
+    <h2 class="text-center mt-3 mx-3">Forgot your password?</h2>
     <div class="card-body text-center">
       <div class="mb-3">
         <%= f.label :email, class: "form-label", for: "exampleInputEmail1"  %><br />

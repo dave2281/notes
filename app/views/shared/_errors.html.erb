@@ -1,11 +1,10 @@
-<% if alert.present? && alert.errors.any? %>
+<% if object.present? && object.errors.any? %>
   <div class="alert alert-danger">
-    <h2><%= pluralize(alert.errors.count, "error") %> prohibited this action from being saved:</h2>
+    <h2><%= pluralize(object.errors.count, "error") %> prohibited this action from being saved:</h2>
     <ul>
-      <% alert.errors.each do |attribute, message| %>
+      <% object.errors.each do |attribute, message| %>
         <li><%= "#{attribute.to_s.humanize} #{message}" %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
-
