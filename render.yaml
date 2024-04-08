@@ -13,7 +13,7 @@ services:
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
-        value: "storage/production.sqlite3"
+        value: "sqlite3://storage/production.sqlite3"
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
