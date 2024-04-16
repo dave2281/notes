@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'home#show_by_tag', as: :tag
 
-
-  root to: 'devise/sessions#new'
-
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
 
   get "notes#index", to: "home#index"
   
