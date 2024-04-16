@@ -22,6 +22,8 @@
           <%= f.password_field :password_confirmation, autocomplete: "confirm-password", class: 'form-control', type: "password", id: "exampleInputPassword1" %>
         </div>
 
+        <%= recaptcha_tags %>
+
         <div style="padding-left: 0%;" class="mb-3 form-check d-flex justify-content-between">
           <%= f.submit "Sign up", class: 'btn btn-primary', style: "width: 135px;" %> 
           <%= link_to 'Log in', new_user_session_path, class: 'btn btn-primary', style: "width: 135px;" %>
