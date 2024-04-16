@@ -40,6 +40,8 @@ gem "redis", ">= 4.0.1"
 
 # My custom Gems
 
+gem 'recaptcha', require: 'recaptcha/rails'
+
 gem 'devise'
 
 gem 'redcarpet'
