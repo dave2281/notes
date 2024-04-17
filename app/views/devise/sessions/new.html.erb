@@ -1,4 +1,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <% if alert.present? %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
   <div class="card position-absolute top-50 start-50 translate-middle">
     <p class="text-center fs-2 fw-bolder">Log in</p>
     <div class="card-body ">
@@ -21,6 +24,8 @@
           </div>  
         <% end %>
       </div>
+
+      <%= recaptcha_tags %>
 
       <div style="margin-top: 10px;" class="mb-3 form-check">
         <%= f.submit "Submit", class: 'btn btn-primary' %>

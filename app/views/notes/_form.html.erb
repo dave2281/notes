@@ -34,9 +34,11 @@
     <% end %>
   </div>
 
-  <%= recaptcha_tags %>
+  <% if notes_recaptcha %>
+    <%= recaptcha_tags %>
+  <% end %>
 
   <div class="form-group mx-3 mt-3">
     <%= form.submit "Submit", class: "btn btn-primary my-3" %> <%= link_to "Back to notes", home_index_path, class: 'btn btn-primary' %>
-  </div>
+  </div> 
 <% end %>

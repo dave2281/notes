@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def notes_recaptcha
+    if Note.where(created_at: Time.zone.today.all_day).count >= 3
+      true
+    else
+      false
+    end
+  end
+
   def markdown(text)
     options = {
       filter_html:     true,

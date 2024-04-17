@@ -11,9 +11,9 @@ class NotesController < ApplicationController
   # POST /notes or /notes.json
   def create
     @note = @user.notes.build(note_params)
-
+  
     respond_to do |format|
-      if verify_recaptcha(model: @note) && @note.save
+      if @note.save
         format.html { redirect_to home_index_path, notice: "Заметка была успешно создана!" }
         format.json { render :show, status: :created, location: @note }
       else
@@ -42,15 +42,6 @@ class NotesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-
-    def add_nofollow_to_links(link)
-      if link.present?
-        link.strip!
-        link += " rel=\"nofollow\"" unless link.include?("nofollow")
-      end
-      link
-    end
-
     def set_note
       @note = @user.notes.find(params[:id])
     rescue ActiveRecord::RecordNotFound

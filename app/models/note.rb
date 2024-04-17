@@ -10,7 +10,7 @@ class Note < ApplicationRecord
   private
 
   def check_notes_limit
-    if Note.where(created_at: Time.zone.today.all_day).count >= 10
+    if Note.where(created_at: Time.zone.today.all_day).count >= 15
       errors.add(:note,"Превышено максимальное количество заметок за сегодня")
     end
   end
