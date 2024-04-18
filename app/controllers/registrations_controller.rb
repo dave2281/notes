@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
     if verify_recaptcha(model: resource)
       if resource.save
         sign_up(resource_name, resource)
-        redirect_to after_sign_up_path_for(resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
       else
         clean_up_passwords resource
         set_minimum_password_length
