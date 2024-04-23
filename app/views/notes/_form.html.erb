@@ -10,7 +10,6 @@
     </div>
   <% end %>
 
-
   <% if alert.present? %>
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
@@ -22,8 +21,12 @@
 
   <div class="form-group mx-3 my-3">
     <%= form.label :text, class: "form-label" %>
-    <%= form.text_area :text, class: "form-control border border-dark", rows: 13 %>
+    <!-- Markdown редактор -->
+    <%= form.text_area :text, class: "form-control border border-dark markdown-editor", id: "markdown-editor", rows: 13, placeholder: "Введите текст с использованием Markdown" %>
   </div>
+
+  <!-- Превью Markdown -->
+  <div id="markdown-preview" class="markdown-preview form-control" style="margin: 15px 0;"></div>
 
   <div class="form-group mx-3 my-3">
     <%= form.label :tags, class: "form-label" %>
@@ -40,5 +43,27 @@
 
   <div class="form-group mx-3 mt-3">
     <%= form.submit "Submit", class: "btn btn-primary my-3" %> <%= link_to "Back to notes", home_index_path, class: 'btn btn-primary' %>
-  </div> 
+  </div>
+
+  <!-- Подключаем библиотеку Showdown.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var converter = new showdown.Converter();
+          var markdownInput = document.querySelector('.markdown-editor');
+          var markdownPreview = document.getElementById('markdown-preview');
+
+          // Показываем превью при загрузке страницы
+          var initialMarkdownText = markdownInput.value;
+          var initialHtmlText = converter.makeHtml(initialMarkdownText);
+          markdownPreview.innerHTML = initialHtmlText;
+
+          // Обновляем превью при вводе текста в редакторе
+          markdownInput.addEventListener('input', function() {
+              var markdownText = markdownInput.value;
+              var htmlText = converter.makeHtml(markdownText);
+              markdownPreview.innerHTML = htmlText;
+          });
+      });
+  </script>
 <% end %>

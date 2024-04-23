@@ -1,19 +1,12 @@
-
-
-<% unless current_user.note_ids.present? %>
-  <div class="container h-auto w-auto">
-    <p class="text-center fs-1">You have nothing here!</p>
-    <p class="text-center form-text fs-6 ">Add some notes.</p>
-  </div>
-<% else %>
-  <div style="margin-right: 0; margin-left: auto; margin-bottom:;"  class="row row-cols-1 row-cols-md-4 g-2 mb-3 mt-2">
-    <% @notes.each_with_index do |note, index| %>
+<% if current_user.note_ids.present? %>
+  <div style="margin-right: 0; margin-left: auto;"  class="row row-cols-1 row-cols-md-4 g-2 mb-3 mt-2">
+    <% @notes.each do |note| %>
       <% if user_id(note) == current_user.id %>
         <div class="col">
           <div class="card rounded-3 h-auto w-auto mx-2 my-2">
-            <div class="card-body">  
+            <div class="card-body">
               <h3 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.title %></h3>
-              <p class="card-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.text %></p>
+              <p class="card-text markdown-preview" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.text %></p>
               <p class="tags"  style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">#<%= json_filter(note.tags).join('@#').gsub('@', ' ') %></p>
               <div class="d-flex justify-content-between">
                 <%= link_to 'Edit Note', edit_note_path(note), class: 'text-decoration-none text-body-secondary' %> <%= link_to 'Delete note', note_path(note), class: "text-decoration-none text-body-secondary", method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -24,4 +17,24 @@
       <% end %>
     <% end %>
   </div>
+<% else %>
+  <div class="container h-auto w-auto">
+    <p class="text-center fs-1">You have nothing here!</p>
+    <p class="text-center form-text fs-6 ">Add some notes.</p>
+  </div>
 <% end %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var converter = new showdown.Converter();
+        var markdownInput = document.querySelector('.markdown-editor');
+        var markdownPreview = document.getElementById('markdown-preview');
+
+        markdownInput.addEventListener('input', function() {
+            var markdownText = markdownInput.value;
+            var htmlText = converter.makeHtml("#{<% note.text %>}");
+            markdownPreview.innerHTML = htmlText;
+        });
+    });
+</script>

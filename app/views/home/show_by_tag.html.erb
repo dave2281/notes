@@ -26,7 +26,7 @@
           <div class="card rounded-3 h-auto w-auto mx-2 my-2">
             <div class="card-body">  
               <h3 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.title %></h3>
-              <p class="card-text" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.text %></p>
+              <p class="card-text markdown" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.text %></p>
               <p class="tags" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">#<%= json_filter(note.tags).join('@#').gsub('@', ' ') %></p>
               <div class="d-flex justify-content-between">
                 <%= link_to 'Edit Note', edit_note_path(note), class: 'text-decoration-none text-body-secondary' %> <%= link_to 'Delete note', note_path(note), class: 'text-decoration-none text-body-secondary', method: :delete, data: { confirm: 'Are you sure?' } %>

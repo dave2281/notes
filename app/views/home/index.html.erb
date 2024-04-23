@@ -12,23 +12,23 @@
     min-height: 100vh; /* Устанавливаем минимальную высоту страницы равную высоте видимой области браузера */
     display: flex;
     flex-direction: column;
-  } 
+  }
 
   #no_body_styles {
     min-height: 83vh;
   }
-  
+
   </style>
 </head>
 <body style="" class="">
   <% if alert.present? %>
-    <p class="alert alert-success"><%= alert %></p>    
+    <p class="alert alert-success"><%= alert %></p>
   <% end %>
 
 
   <%= render partial: 'shared/notice_errors' %>
 
-  <%= render 'partials/navbar' %> 
+  <%= render 'partials/navbar' %>
 
   <div id="no_body_styles">
     <%= render 'shared/tags' %>
