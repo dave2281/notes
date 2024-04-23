@@ -20,12 +20,12 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div> class="mb-3">
         <%= form.label :username, class: "form-label" %>
         <%= form.text_field :username, class: "form-control" %>
       </div>
 
-      <div class="mb-3">
+      <div> class="mb-3">
         <%= form.label :email, class: "form-label" %>
         <%= form.text_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
       </div>
@@ -34,4 +34,6 @@
         <%= form.submit "Update User", class: 'btn btn-success' %> 
       </div>
       <hr class="mt-0 mb-4">
+    </div>
+  </div>
 <% end %>

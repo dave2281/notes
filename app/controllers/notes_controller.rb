@@ -11,7 +11,7 @@ class NotesController < ApplicationController
   # POST /notes or /notes.json
   def create
     @note = @user.notes.build(note_params)
-  
+
     respond_to do |format|
       if @note.save
         format.html { redirect_to home_index_path, notice: "Заметка была успешно создана!" }
@@ -25,7 +25,7 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
-    
+
     if @note.update(note_params)
       redirect_to home_index_path, notice: "Заметка успешно обновлена."
     else
@@ -51,7 +51,7 @@ class NotesController < ApplicationController
     def set_notes
       @notes = @user.notes
     end
- 
+
     def set_user
       @user = current_user
     end

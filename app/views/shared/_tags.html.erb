@@ -26,8 +26,12 @@
   <div class="offcanvas-body">
     <div class="container text-center">
       <div class="row row-cols-2">
-        <% tag_list.uniq.each do |uniq_tags| %>
-          <%= link_to truncate("##{uniq_tags}", length: 15), tag_path(uniq_tags), class: 'mx-1 my-1' %>
+        <% unless tag_list.empty? %>
+          <% tag_list.uniq.each do |uniq_tags| %>
+            <%= link_to truncate("##{uniq_tags}", length: 15), tag_path(uniq_tags), class: 'mx-1 my-1' %>
+          <% end %>
+        <% else %>
+          <p>No tags.</p>
         <% end %>
       </div>
     </div>

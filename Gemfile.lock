@@ -77,6 +77,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.6)
@@ -123,6 +124,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.7.2)
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -132,6 +135,11 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    markdown-rails (2.1.0)
+      actionview (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
+      redcarpet (>= 3.0.0)
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.21.2)
@@ -147,19 +155,13 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
-    nokogiri (1.16.0-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.0-arm-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.0-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.0-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.0-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.24.0)
+    parser (3.3.0.5)
+      ast (~> 2.4.1)
+      racc
     pg (1.5.6)
     psych (5.1.2)
       stringio
@@ -204,6 +206,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
@@ -220,6 +223,20 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rubocop (1.63.2)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.31.2)
+      parser (>= 3.3.0.4)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.17.0)
@@ -246,6 +263,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webrick (1.8.1)
@@ -258,11 +276,6 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
-  arm64-darwin
-  x86-linux
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
@@ -273,6 +286,7 @@ DEPENDENCIES
   devise
   importmap-rails
   jbuilder
+  markdown-rails (~> 2.1)
   pg
   puma (>= 5.0)
   rackup (~> 2.1)
@@ -280,6 +294,7 @@ DEPENDENCIES
   recaptcha
   redcarpet
   redis (>= 4.0.1)
+  rubocop
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4.2)
@@ -288,7 +303,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.4
