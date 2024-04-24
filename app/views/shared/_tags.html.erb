@@ -1,11 +1,13 @@
 <% tag_list = [] %>
 
 <% @tags.each do |tag| %>
-  <% json_filter(tag).each do |tags| %>
-    <% unless tag_list.include?(tags) %>
-      <% tag_list.push(tags) %>
+  <% if tag.present? %>
+    <% json_filter(tag).each do |tags| %>
+      <% unless tag_list.include?(tags) %>
+        <% tag_list.push(tags) %>
+      <% end %>
     <% end %>
-  <% end %>
+  <% end %>>
 <% end %>
 <div class="container">
   <div class="row">
@@ -26,7 +28,7 @@
   <div class="offcanvas-body">
     <div class="container text-center">
       <div class="row row-cols-2">
-        <% unless tag_list.empty? %>
+        <% if tag_list.present? %>
           <% tag_list.uniq.each do |uniq_tags| %>
             <%= link_to truncate("##{uniq_tags}", length: 15), tag_path(uniq_tags), class: 'mx-1 my-1' %>
           <% end %>

@@ -3,7 +3,7 @@
 class Note < ApplicationRecord
   belongs_to :user
   before_save :process_tags
-  before_save :render_markdown
+  after_save :render_markdown
 
   validate :check_notes_limit, on: :create
   validates :title, presence: true, length: { maximum: 255 }

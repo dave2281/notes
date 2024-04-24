@@ -40,6 +40,8 @@ gem 'redis', '>= 4.0.1'
 
 # My custom Gems
 
+gem 'tinymce-rails'
+
 gem 'markdown-rails', '~> 2.1'
 
 gem 'recaptcha'

@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 <%= form_with(model: @note) do |form| %>
   <% if @note.errors.any? %>
     <div class="alert alert-danger">
@@ -22,7 +24,10 @@
   <div class="form-group mx-3 my-3">
     <%= form.label :text, class: "form-label" %>
     <!-- Markdown редактор -->
-    <%= form.text_area :text, class: "form-control border border-dark markdown-editor", id: "markdown-editor", rows: 13, placeholder: "Введите текст с использованием Markdown" %>
+    <script type="text/javascript" src="/assets/tinymce.js"></script>
+
+    <%= form.text_area :text, class: "tinymce", rows: 17, cols: 200 %>
+    <%= tinymce %>
   </div>
 
   <!-- Превью Markdown -->
@@ -44,26 +49,4 @@
   <div class="form-group mx-3 mt-3">
     <%= form.submit "Submit", class: "btn btn-primary my-3" %> <%= link_to "Back to notes", home_index_path, class: 'btn btn-primary' %>
   </div>
-
-  <!-- Подключаем библиотеку Showdown.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-  <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          var converter = new showdown.Converter();
-          var markdownInput = document.querySelector('.markdown-editor');
-          var markdownPreview = document.getElementById('markdown-preview');
-
-          // Показываем превью при загрузке страницы
-          var initialMarkdownText = markdownInput.value;
-          var initialHtmlText = converter.makeHtml(initialMarkdownText);
-          markdownPreview.innerHTML = initialHtmlText;
-
-          // Обновляем превью при вводе текста в редакторе
-          markdownInput.addEventListener('input', function() {
-              var markdownText = markdownInput.value;
-              var htmlText = converter.makeHtml(markdownText);
-              markdownPreview.innerHTML = htmlText;
-          });
-      });
-  </script>
 <% end %>

@@ -11,7 +11,7 @@ module ApplicationHelper
     options = {
       filter_html:     true,
       hard_wrap:       true,
-      link_attributes: { rel: 'nofollow', target: "_blank" },
+      link_attributes: { rel: 'nofollow', target: '_blank' },
       space_after_headers: true,
       fenced_code_blocks: true
     }
@@ -29,7 +29,9 @@ module ApplicationHelper
   end
 
   def json_filter(string_with_array)
-    JSON.parse(string_with_array)
+    if string_with_array.present?
+      JSON.parse(string_with_array)
+    end
   end
   
   def user_id(note)
