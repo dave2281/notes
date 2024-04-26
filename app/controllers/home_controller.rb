@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def show_by_tag
     @tag = params[:tag]
-    @notes = Note.where("tags LIKE ?", "%#{@tag}%")
+    @notes = Note.where('tags LIKE ?', "%#{@tag}%")
   end
 
   def index
@@ -13,6 +13,6 @@ class HomeController < ApplicationController
   private
 
   def all_tags
-    @tags = Note.pluck(:tags).flatten.uniq.compact
+    @tags = Note.pluck(:tags).map { |tags| JSON.parse(tags) }.flatten.uniq.compact
   end
 end

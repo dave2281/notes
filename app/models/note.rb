@@ -8,6 +8,7 @@ class Note < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :text, presence: true
   validates :tags, length: { maximum: 255 }, allow_blank: true
+  validates :color, inclusion: { in: %w[black red blue green] }
 
   private
 

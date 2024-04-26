@@ -2,10 +2,8 @@
 
 <% @tags.each do |tag| %>
   <% if tag.present? %>
-    <% json_filter(tag).each do |tags| %>
-      <% unless tag_list.include?(tags) %>
-        <% tag_list.push(tags) %>
-      <% end %>
+    <% unless tag_list.include?(tags) %>
+      <% tag_list.push(tags) %>
     <% end %>
   <% end %>
 <% end %>

@@ -5,10 +5,10 @@
         <div class="col">
           <div class="card rounded-3 h-auto w-auto mx-2 my-2">
             <div class="card-body">
-              <h3 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= note.title %></h3>
+              <h3 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%; color:<%= note.color %>;"><%= note.title %></h3>
               <p class="card-text markdown-preview" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;"><%= sanitize(note.text, tags: %w(strong em br)) %></p>
 
-              <% tags = json_filter(note.tags) %>
+              <% tags = json_filter(tags = note.tags) %>
               <% if tags.is_a?(Hash) %>
               <% elsif tags.present? %>
                 <p class="tags" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 100%;">#<%= tags.join(' #') %></p>

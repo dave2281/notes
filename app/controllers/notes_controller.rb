@@ -1,7 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_user
-  before_action :set_notes, only: [:index]
-  before_action :set_note, only: [:edit, :update, :destroy]
+  before_action :set_note, only: %i[edit update destroy]
 
   # GET /notes/new
   def new
@@ -41,22 +40,24 @@ class NotesController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = @user.notes.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to home_index_path, alert: 'Заметка не найдена.'
-    end
 
-    def set_notes
-      @notes = @user.notes
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = @user.notes.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to home_index_path, alert: 'Заметка не найдена.'
+  end
 
-    def set_user
-      @user = current_user
-    end
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.require(:note).permit(:title, :text, :tags)
-    end
+  def set_notes
+    @notes = @user.notes
+  end
+
+  def set_user
+    @user = current_user
+  end
+
+  # Only allow a list of trusted parameters through.
+  def note_params
+    params.require(:note).permit(:title, :text, :tags, :color)
+  end
 end

@@ -31,7 +31,7 @@
   <%= render 'partials/navbar' %>
 
   <div id="no_body_styles">
-    <%= render 'shared/tags' %>
+    <%= render partial: 'shared/tags', locals: { tags: @tags } %>
     <br>
 
     <%= render 'shared/index_content' %>
