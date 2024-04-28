@@ -39,7 +39,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -76,12 +76,11 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = false
 
-  # config.action_mailer.smtp_setting = {
-  #   address: '',
-  #   port: '',
-  #   username: ,
-  #   password: ,
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
+
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['MAILGUN_API_KEY'],
+    domain: "notes-6t3l.onrender.com"
+  }
 end
