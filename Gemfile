@@ -40,7 +40,7 @@ gem 'redis', '>= 4.0.1'
 
 # My custom Gems
 
-gem 'mailgun-ruby', require: 'mailgun'
+gem 'mailgun_rails'
 
 gem 'tinymce-rails'
 
