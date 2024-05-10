@@ -17,7 +17,8 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
-  config.action_mailer.default_url_options[:host] = 'https://notes.rubydevelopers.org/'
+  config.action_mailer.default_url_options = { host: ENV['NOTES_HOSTNAME'] }
+
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
