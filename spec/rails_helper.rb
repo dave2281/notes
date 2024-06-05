@@ -5,7 +5,18 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'rails-controller-testing'
+Rails::Controller::Testing.install
+
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Rails::Controller::Testing::TemplateAssertions, type: :controller
+  config.include Rails::Controller::Testing::Integration, type: :controller
+  config.include Rails::Controller::Testing::TestProcess, type: :controller
+end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
