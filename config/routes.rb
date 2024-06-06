@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :notes, except: [:show]
   resources :home, only: [:index]
+  resources :user, only: %i[create edit destroy update show]
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
 
   get 'tags/:tag', to: 'home#show_by_tag', as: :tag
