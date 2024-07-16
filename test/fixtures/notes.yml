@@ -1,11 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  text: MyText
-  tags: MyString
+  user: user_one
+  title: "First Note"
+  text: "Lorem ipsum dolor sit amet"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
 
 two:
-  title: MyString
-  text: MyText
-  tags: MyString
+  user: user_one
+  title: "Second Note"
+  text: "ALalallalalal"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

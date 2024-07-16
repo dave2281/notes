@@ -46,7 +46,6 @@ gem 'tinymce-rails'
 
 gem 'markdown-rails', '~> 2.1'
 
-gem 'recaptcha'
 
 gem 'devise'
 
@@ -89,4 +88,7 @@ group :test do
 end
 
 gem 'rackup', '~> 2.1'
+
+
+gem 'recaptcha'
 
